@@ -1,0 +1,58 @@
+
+# -------------------------
+# Node & Backend
+# -------------------------
+node_modules/
+server/node_modules/
+client/node_modules/
+
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment Files
+.env
+server/.env
+client/.env
+
+# Logs
+logs
+*.log
+*.log.*
+log/*.log
+
+# Build Output
+dist/
+build/
+server/dist/
+client/dist/
+client/build/
+
+# Cache
+.cache/
+client/.cache/
+server/.cache/
+
+# Coverage Reports
+coverage/
+
+# Temporary Files
+*.tmp
+*.temp
+
+# Editor Folders
+.vscode/
+.idea/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# React Specific
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# Optional
+*.local
+*.cache
