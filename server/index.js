@@ -7,7 +7,6 @@ import jwt from 'jsonwebtoken';
 import User from './models/User.js';
 import connectDB from './config/db.js';
 import authRoutes from './routes/auth.js';
-import foodItemRoutes from './routes/foodItems.js';
 import postRoutes from './routes/posts.js';
 import adminRoutes from './routes/admin.js';
 import chatRoutes from './routes/chat.js';
@@ -15,8 +14,7 @@ import ratingsRoutes from './routes/ratings.js';
 import startExpiryTracker from './cron/expiryTracker.js';
 import Message from './models/Message.js';
 import Conversation from './models/Conversation.js';
-import FoodPost from './models/FoodPost.js';
-import FoodItem from './models/FoodItem.js'; // only if you still support FoodItem chats
+import FoodPost from './models/FoodPost.js'; // only if you still support FoodItem chats
 
 // Load env vars
 dotenv.config();
@@ -37,7 +35,6 @@ app.use(cors());
 
 // Mount Routers
 app.use('/api/auth', authRoutes);
-app.use('/api/fooditems', foodItemRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/chat', chatRoutes);
@@ -116,12 +113,11 @@ io.on('connection', (socket) => {
 
 socket.on(
   'sendMessage',
-  async ({ conversationId, text, roomId, postModel = 'FoodPost' }) => {
+  async ({ conversationId, text, roomId }) => {
     try {
       if (!text || !roomId) return;
 
-      // Decide which model to use (FoodPost vs FoodItem)
-      const PostModel = postModel === 'FoodItem' ? FoodItem : FoodPost;
+      const PostModel = FoodPost; // Always use FoodPost
 
       let convId = conversationId;
 
@@ -145,13 +141,13 @@ socket.on(
 
         let conversation = await Conversation.findOne({
           relatedPostId: roomId,
-          postModel,
+          // No longer need postModel in conversation query as we only use FoodPost
         });
 
         if (!conversation) {
           conversation = new Conversation({
             relatedPostId: roomId,
-            postModel,
+            // No longer need postModel in conversation creation
             participants: [ownerId, claimerId],
           });
           await conversation.save();
