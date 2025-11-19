@@ -20,7 +20,7 @@ function App() {
     <div className="d-flex flex-column min-vh-100">
       <Header />
       <main className="py-4 flex-grow-1">
-        <Container>
+        <Container className="fade-in">
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<HomePage />} />

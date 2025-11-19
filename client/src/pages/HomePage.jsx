@@ -57,12 +57,24 @@ const HomePage = () => {
     
     if (socket && isConnected) {
       socket.on('new_post', (newPost) => {
-        // Basic check to see if the new post is within a reasonable distance
-        // A more advanced solution would calculate distance on the client
         setPosts((prevPosts) => [newPost, ...prevPosts]);
       });
 
-      return () => socket.off('new_post');
+      socket.on('post_update', (updatedPost) => {
+        setPosts((prevPosts) => 
+          prevPosts.map(p => p._id === updatedPost._id ? updatedPost : p)
+        );
+      });
+
+      socket.on('post_delete', (deletedPost) => {
+        setPosts((prevPosts) => prevPosts.filter(p => p._id !== deletedPost._id));
+      });
+
+      return () => {
+        socket.off('new_post');
+        socket.off('post_update');
+        socket.off('post_delete');
+      };
     }
   }, [location, socket, isConnected]);
 
@@ -93,7 +105,7 @@ const HomePage = () => {
             posts.map((post) => (
               <Col key={post._id} sm={12} md={6} lg={4} xl={3} className="mb-4">
                 <Card className="h-100 shadow-sm">
-                  <Card.Img variant="top" src={`https://via.placeholder.com/300x200?text=${post.category || 'Food'}`} />
+                  <Card.Img variant="top" src={`https://source.unsplash.com/random/400x300/?food,${post.category || 'meal'}`} style={{ height: '200px', objectFit: 'cover' }} />
                   <Card.Body className="d-flex flex-column">
                     <Card.Title className="fw-bold mb-2">{post.title}</Card.Title>
                     <Card.Text className="text-muted small mb-3">

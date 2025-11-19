@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Table, Button, Spinner, Alert, Pagination } from 'react-bootstrap';
+import { Table, Button, Spinner, Alert, Pagination, Badge } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 const UserManagement = () => {
@@ -41,36 +41,44 @@ const UserManagement = () => {
 
   return (
     <div>
-      <h3 className="mb-4">Manage Users</h3>
+      <h3 className="mb-4">User Management</h3>
       {loading ? <Spinner animation="border" /> : error ? <Alert variant="danger">{error}</Alert> : (
         <>
-          <Table striped bordered hover responsive className="align-middle">
+          <Table responsive striped bordered hover className="align-middle">
             <thead className="bg-light">
               <tr>
-                <th>ID</th>
+                <th className="text-center">Avatar</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
+                <th>Joined</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {users.map(user => (
                 <tr key={user._id}>
-                  <td>{user._id}</td>
+                  <td className="text-center">
+                    <img 
+                      src={`https://i.pravatar.cc/40?u=${user.email}`} 
+                      alt={user.name}
+                      className="rounded-circle"
+                    />
+                  </td>
                   <td>{user.name}</td>
                   <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
-                  <td>{user.role === 'admin' ? <span className="badge bg-success">Admin</span> : <span className="badge bg-secondary">User</span>}</td>
+                  <td><Badge bg={user.role === 'admin' ? 'primary' : 'secondary'}>{user.role}</Badge></td>
+                  <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                   <td>
                     <Button variant="outline-danger" size="sm" onClick={() => deleteHandler(user._id)}>
-                      <i className="fas fa-trash"></i> Delete
+                      <i className="fas fa-trash"></i>
                     </Button>
                   </td>
                 </tr>
               ))}
             </tbody>
           </Table>
-          <Pagination>
+          <Pagination className="justify-content-center">
             {[...Array(pages).keys()].map(x => (
               <Pagination.Item key={x + 1} active={x + 1 === page} onClick={() => setPage(x + 1)}>
                 {x + 1}
