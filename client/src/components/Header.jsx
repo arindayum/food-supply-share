@@ -19,7 +19,7 @@ const Header = () => {
         <Container>
           <LinkContainer to="/">
             <Navbar.Brand>
-              <i className="fas fa-hands-helping"></i> Food Supply
+              <i className="fas fa-hands-helping"></i> Food Share
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />

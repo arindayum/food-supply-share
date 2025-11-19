@@ -47,7 +47,6 @@ const UserManagement = () => {
           <Table responsive striped bordered hover className="align-middle">
             <thead className="bg-light">
               <tr>
-                <th className="text-center">Avatar</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
@@ -58,13 +57,6 @@ const UserManagement = () => {
             <tbody>
               {users.map(user => (
                 <tr key={user._id}>
-                  <td className="text-center">
-                    <img 
-                      src={`https://i.pravatar.cc/40?u=${user.email}`} 
-                      alt={user.name}
-                      className="rounded-circle"
-                    />
-                  </td>
                   <td>{user.name}</td>
                   <td><a href={`mailto:${user.email}`}>{user.email}</a></td>
                   <td><Badge bg={user.role === 'admin' ? 'primary' : 'secondary'}>{user.role}</Badge></td>
