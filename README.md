@@ -1,6 +1,6 @@
-# Food Supply - A Full-Stack Food Sharing Platform
+# Food Share - A Full-Stack Food Sharing Platform
 
-Food Supply is a modern, full-stack web application designed to combat food waste by connecting those with surplus food to those in need. It provides a real-time, map-based platform for users to post, discover, and claim food items in their local community, complete with a user reputation system and live chat to facilitate smooth and trustworthy exchanges.
+Food Share is a modern, full-stack web application designed to combat food waste by connecting those with surplus food to those in need. It provides a real-time, map-based platform for users to post, discover, and claim food items in their local community, complete with a user reputation system and live chat to facilitate smooth and trustworthy exchanges.
 
 ![Demo Screenshot](https://source.unsplash.com/random/800x400/?food,community)
 

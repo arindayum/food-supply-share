@@ -1,12 +1,12 @@
-# Technical Documentation: Food Supply Application
+# Technical Documentation: Food Share Application
 
-This document provides a detailed technical overview of the Food Supply application, covering its architecture, key components, data flow, and design principles.
+This document provides a detailed technical overview of the Food Share application, covering its architecture, key components, data flow, and design principles.
 
 ---
 
 ## 1. Project Overview
 
-The Food Supply application is a full-stack web platform designed to connect individuals with surplus food (donors) to those who can utilize it (claimers). It emphasizes real-time interaction, location-based discovery, and a community-driven reputation system to minimize food waste.
+The Food Share application is a full-stack web platform designed to connect individuals with surplus food (donors) to those who can utilize it (claimers). It emphasizes real-time interaction, location-based discovery, and a community-driven reputation system to minimize food waste.
 
 ---
 
@@ -289,4 +289,4 @@ Socket.IO is integrated for instant updates:
 
 ---
 
-This documentation provides a comprehensive understanding of the Food Supply application's technical aspects, enabling developers to effectively maintain and extend the project.
+This documentation provides a comprehensive understanding of the Food Share application's technical aspects, enabling developers to effectively maintain and extend the project.
