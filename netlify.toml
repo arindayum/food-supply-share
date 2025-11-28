@@ -1,0 +1,23 @@
+# Netlify configuration for your full-stack project
+
+# Build settings for the frontend (client)
+[build]
+  base    = "client"
+  command = "npm run build"
+  publish = "client/dist"
+
+# Proxy rule to redirect API requests to your backend server.
+# IMPORTANT: Replace 'YOUR_BACKEND_URL_HERE' with the actual URL of your deployed backend server.
+# For example: "https://your-food-app-server.onrender.com/api/:splat"
+[[redirects]]
+  from = "/api/*"
+  to = "YOUR_BACKEND_URL_HERE/:splat"
+  status = 200
+  force = true
+
+# Fallback rule for Single Page Applications (like React Router)
+# This ensures that navigating directly to a client-side route works.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
