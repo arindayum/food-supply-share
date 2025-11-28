@@ -11,7 +11,7 @@
 # For example: "https://your-food-app-server.onrender.com/api/:splat"
 [[redirects]]
   from = "/api/*"
-  to = "YOUR_BACKEND_URL_HERE/:splat"
+  to = "https://food-share-7mco.onrender.com"
   status = 200
   force = true
 
